@@ -28,7 +28,6 @@ function playerSelect(e) {
     else {
         playerSelection="Scissor"
     };
-    console.log(playerSelection);
     const div_you = document.querySelector(".you-choosed");
     const you_choose = document.querySelector(".you-choose");
     you_choose.removeChild(div_you);
@@ -48,8 +47,7 @@ function round () {
         console.log("The player has choosen "+playerSelection.toLowerCase());
         console.log("Player has won this round");
         playerpoints=++playerpoints;
-        gamecount=++gamecount
-        console.log(playerpoints);
+        gamecount=++gamecount;
     }
     else if (playerSelection===computerSelection) {
         console.log("The computer has choosen "+computerSelection);
@@ -62,8 +60,7 @@ function round () {
         console.log("The player has choosen "+playerSelection.toLowerCase());
         console.log("Computer has won this round");
         computerpoints=++computerpoints;
-        console.log(computerpoints);
-        gamecount=++gamecount
+        gamecount=++gamecount;
     }
     const div_you_points = document.querySelector(".you-points");
     const you_point = document.querySelector(".you-point");
@@ -75,19 +72,33 @@ function round () {
     com_point.removeChild(div_com_points);
     div_com_points.textContent=computerpoints;
     com_point.appendChild(div_com_points);
-}
-function game(e) {
-    playerSelect(e);
-    round();
-    if (playerpoints>computerpoints) {
-        console.log("Player has won with "+playerpoints+" points, while computer got "+computerpoints+" points.");
-    }
-    else if (computerpoints>playerpoints) {
-        console.log("Computer has won with "+computerpoints+" points, while player got "+playerpoints+" points.")
+    if (computerpoints==5 || playerpoints==5) {
+        game();
     }
     else {
-        console.log("The game ended in a tie")
-    };
-    console.log(gamecount);
+        return;
+    }
+}
+function game(e) {
+    if (playerpoints==5) {
+        const winner = document.querySelector(".winner");
+        const body = document.querySelector(".winner-box");
+        body.removeChild(winner);
+        winner.textContent="You won!";
+        body.appendChild(winner);
+        return;
+    }
+    else if (computerpoints==5) {
+        const winner = document.querySelector(".winner");
+        const body = document.querySelector(".winner-box");
+        body.removeChild(winner);
+        winner.textContent="The computer won!";
+        body.appendChild(winner);
+        return
+    }
+    else {
+        playerSelect(e);
+        round();
+    }
 }
 
