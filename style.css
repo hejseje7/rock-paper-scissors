@@ -5,22 +5,46 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    font-family: 'Gloria Hallelujah', sans-serif;
+    align-items: center;
 }
 .header {
     text-align: center;
+    margin-bottom: 0.2rem;
 }
 .option {
     font-size: 2rem;
+}
+.wins {
+    font-size: 1.2rem;
 }
 .container-options {
     display: flex;
     width: 70%;
     align-self: center;
     justify-content: space-between;
-    margin: 2rem 0rem 0.5rem;
+    margin: 1rem 0rem 0.5rem;
 }
 .option-button {
     background-color: orange;
     font-size: 1.2rem;
     cursor: pointer;
+}
+.container-stats {
+width: 70%;
+align-self: center;
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+.choosing, .point {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.you-choose, .computer-choose, .you-point, .computer-point {
+    display: flex;
+    width: 40%;
+    font-size: 1.8rem;
+    gap: 5%;
 }

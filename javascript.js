@@ -6,36 +6,44 @@ let playerSelection, computerSelection, playerpoints=0, computerpoints=0, gameco
 
 function computerPlay() {
     if (getRandomInt()===1) {
-        computerSelection="rock";
+        computerSelection="Rock";
     }
     else if (getRandomInt()===2) {
-        computerSelection="paper";
+        computerSelection="Paper";
     }
     else {
-        computerSelection="scissor";
+        computerSelection="Scissor";
     };
 }
-
-
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => button.addEventListener("click", game));
 
 function playerSelect(e) {
     if (e.path[1].id=="rock") {
-        playerSelection="rock";
+        playerSelection="Rock";
     }
     else if (e.path[1].id=="paper") {
-        playerSelection="paper";
+        playerSelection="Paper";
     }
     else {
-        playerSelection="scissor"
+        playerSelection="Scissor"
     };
     console.log(playerSelection);
+    const div_you = document.querySelector(".you-choosed");
+    const you_choose = document.querySelector(".you-choose");
+    you_choose.removeChild(div_you);
+    div_you.textContent=playerSelection;
+    you_choose.appendChild(div_you);
 }
 
 function round () {
     computerPlay();
-    if ((playerSelection==="rock" && computerSelection==="scissor") || (playerSelection==="paper" && computerSelection==="rock") || (playerSelection==="scissor" && computerSelection==="paper")) {
+    const div_com = document.querySelector(".com-choosed");
+    const computer_choose = document.querySelector(".computer-choose");
+    computer_choose.removeChild(div_com);
+    div_com.textContent=computerSelection;
+    computer_choose.appendChild(div_com);
+    if ((playerSelection=="Rock" && computerSelection=="Scissor") || (playerSelection=="Paper" && computerSelection=="Rock") || (playerSelection=="Scissor" && computerSelection=="Paper")) {
         console.log("The computer has choosen "+computerSelection);
         console.log("The player has choosen "+playerSelection.toLowerCase());
         console.log("Player has won this round");
@@ -57,6 +65,16 @@ function round () {
         console.log(computerpoints);
         gamecount=++gamecount
     }
+    const div_you_points = document.querySelector(".you-points");
+    const you_point = document.querySelector(".you-point");
+    you_point.removeChild(div_you_points);
+    div_you_points.textContent=playerpoints;
+    you_point.appendChild(div_you_points);
+    const div_com_points = document.querySelector(".com-points");
+    const com_point = document.querySelector(".computer-point");
+    com_point.removeChild(div_com_points);
+    div_com_points.textContent=computerpoints;
+    com_point.appendChild(div_com_points);
 }
 function game(e) {
     playerSelect(e);
@@ -72,3 +90,4 @@ function game(e) {
     };
     console.log(gamecount);
 }
+
