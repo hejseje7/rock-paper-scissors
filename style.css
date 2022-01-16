@@ -1,0 +1,26 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: orange;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    text-align: center;
+}
+.option {
+    font-size: 2rem;
+}
+.container-options {
+    display: flex;
+    width: 70%;
+    align-self: center;
+    justify-content: space-between;
+    margin: 2rem 0rem 0.5rem;
+}
+.option-button {
+    background-color: orange;
+    font-size: 1.2rem;
+    cursor: pointer;
+}

@@ -2,7 +2,7 @@ function getRandomInt() {
     return Math.floor(Math.random() * 3+1);
 }
 
-let playerSelection, computerSelection, playerpoints=0, computerpoints=0
+let playerSelection, computerSelection, playerpoints=0, computerpoints=0, gamecount=0;
 
 function computerPlay() {
     if (getRandomInt()===1) {
@@ -16,23 +16,38 @@ function computerPlay() {
     };
 }
 
-function round() {
-    computerPlay();
-    playerSelection=prompt("Rock, Paper or scissor?: ");
-    if (!(playerSelection.toLowerCase()==="rock" || playerSelection.toLowerCase()==="paper" || playerSelection.toLowerCase()==="scissor")) {
-        console.log("Error, "+playerSelection+" is not an option");
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener("click", game));
+
+function playerSelect(e) {
+    if (e.path[1].id=="rock") {
+        playerSelection="rock";
     }
-    else if ((playerSelection.toLowerCase()==="rock" && computerSelection==="scissor") || (playerSelection.toLowerCase()==="paper" && computerSelection==="rock") || (playerSelection.toLowerCase()==="scissor" && computerSelection==="paper")) {
+    else if (e.path[1].id=="paper") {
+        playerSelection="paper";
+    }
+    else {
+        playerSelection="scissor"
+    };
+    console.log(playerSelection);
+}
+
+function round () {
+    computerPlay();
+    if ((playerSelection==="rock" && computerSelection==="scissor") || (playerSelection==="paper" && computerSelection==="rock") || (playerSelection==="scissor" && computerSelection==="paper")) {
         console.log("The computer has choosen "+computerSelection);
         console.log("The player has choosen "+playerSelection.toLowerCase());
         console.log("Player has won this round");
         playerpoints=++playerpoints;
+        gamecount=++gamecount
         console.log(playerpoints);
     }
-    else if (playerSelection.toLowerCase()===computerSelection) {
+    else if (playerSelection===computerSelection) {
         console.log("The computer has choosen "+computerSelection);
         console.log("The player has choosen "+playerSelection.toLowerCase());
         console.log("It's a tie");
+        gamecount=++gamecount
     }
     else {
         console.log("The computer has choosen "+computerSelection);
@@ -40,14 +55,11 @@ function round() {
         console.log("Computer has won this round");
         computerpoints=++computerpoints;
         console.log(computerpoints);
+        gamecount=++gamecount
     }
 }
-
-function game() {
-    round();
-    round();
-    round();
-    round();
+function game(e) {
+    playerSelect(e);
     round();
     if (playerpoints>computerpoints) {
         console.log("Player has won with "+playerpoints+" points, while computer got "+computerpoints+" points.");
@@ -57,7 +69,6 @@ function game() {
     }
     else {
         console.log("The game ended in a tie")
-    }
+    };
+    console.log(gamecount);
 }
-
-game()
